@@ -28,6 +28,17 @@ export class PokemonService {
     }
   }
 
+  async batchCreate(createdPokemonBatchDto: CreatePokemonDto[]) {
+    try {
+      const createdPokemonBatch = this.pokemonModel.insertMany(
+        createdPokemonBatchDto,
+      );
+      return createdPokemonBatch;
+    } catch (error) {
+      this.handleExceptions(error);
+    }
+  }
+
   async findAll(): Promise<HydratedDocument<Pokemon>[]> {
     return await this.pokemonModel.find();
   }
@@ -70,6 +81,10 @@ export class PokemonService {
     const { deletedCount } = await this.pokemonModel.deleteOne({ _id: id });
     if (deletedCount === 0)
       throw new BadRequestException(`Pokemon with id ${id} not found`);
+  }
+
+  async removeAll() {
+    await this.pokemonModel.deleteMany();
   }
 
   private handleExceptions(error: any) {
