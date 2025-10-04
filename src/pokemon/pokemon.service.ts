@@ -21,9 +21,9 @@ export class PokemonService {
     private readonly configService: ConfigService,
   ) {
     //console.log(process.env.DEFAULT_LIMIT); // Si se hace desde aquí obtenemos undefined porque no esta definido
-    console.log(this.configService.get<number>('defaultLimit')); // Si se hace desde aquí obtenemos el valor como un numero
-    //console.log(this.configService.get('DEFAULT_LIMIT')); // Si se hace desde aquí obtenemos el valor como un numero
-    //this.defaultLimit = this.configService.get<number>('defaultLimit');asd
+    //console.log(this.configService.get<number>('defaultLimit')); // Si se hace desde aquí obtenemos el valor como un numero
+    //console.log(this.configService.get('DEFAULT_LIMIT')); // Si se hace desde aquí obtenemos el valor como un numeroms
+    this.defaultLimit = this.configService.get<number>('defaultLimit');
     //console.log(this.defaultLimit);
   }
 

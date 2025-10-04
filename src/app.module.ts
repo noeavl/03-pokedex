@@ -23,6 +23,7 @@ import { JoiValidationSchema } from 'config/joi.validation';
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => ({
         uri: configService.get<string>('mongodb_uri'),
+        dbName: 'nest-pokemon',
       }),
       inject: [ConfigService],
     }),
