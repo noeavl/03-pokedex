@@ -8,16 +8,16 @@ import { SeedModule } from './seed/seed.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from 'config/configuration';
 import { JoiValidationSchema } from 'config/joi.validation';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true,
       load: [configuration],
       validationSchema: JoiValidationSchema,
     }),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
+      rootPath: join(process.cwd(), 'client'),
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -30,6 +30,7 @@ import { JoiValidationSchema } from 'config/joi.validation';
     PokemonModule,
     CommonModule,
     SeedModule,
+    FilesModule,
   ],
 })
 export class AppModule {}
